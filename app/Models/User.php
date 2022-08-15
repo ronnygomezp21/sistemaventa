@@ -61,6 +61,13 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public $guard_name = 'api';
+
+    public function guardName()
+    {
+        return 'api';
+    }
+
     public function adminlte_image()
     {
         return auth()->user()->profile_photo_url;
