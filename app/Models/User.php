@@ -10,6 +10,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+
 class User extends Authenticatable
 {
     use HasRoles;
@@ -60,13 +61,6 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
-    public $guard_name = 'api';
-
-    public function guardName()
-    {
-        return 'api';
-    }
 
     public function adminlte_image()
     {
