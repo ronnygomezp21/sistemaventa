@@ -11,6 +11,7 @@ class PermisoController extends Controller
     public function __construct()
     {
         $this->middleware('permission:ver-permiso', ['only' => ['index']]);
+        $this->middleware('permission:crear-permiso', ['only' => ['create', 'store']]);
     }
 
     public function index()
