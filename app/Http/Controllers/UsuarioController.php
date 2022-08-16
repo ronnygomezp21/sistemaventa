@@ -31,7 +31,7 @@ class UsuarioController extends Controller
 
     public function show($id)
     {
-        return redirect()->route('usuarios.index');
+        return abort(404);
     }
 
     public function create()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
@@ -25,7 +26,7 @@ class RolController extends Controller
 
     public function show($id)
     {
-        return redirect()->route('roles.index');
+        return abort(404);
     }
 
     public function create()
@@ -66,12 +67,19 @@ class RolController extends Controller
 
     public function edit($id)
     {
-        $role = Role::find($id);
-        $permissions = Permission::get();
-        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id", $id)
-            ->pluck("role_has_permissions.permission_id", "role_has_permissions.permission_id")
-            ->all();
-        return view('roles.edit', compact('role', 'permissions', 'rolePermissions'));
+        try {
+
+            $role = Role::findOrFail($id);
+            $permissions = Permission::get();
+            $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id", $id)
+                ->pluck("role_has_permissions.permission_id", "role_has_permissions.permission_id")
+                ->all();
+            return view('roles.edit', compact('role', 'permissions', 'rolePermissions'));
+
+        } catch (ModelNotFoundException $e) {
+
+            return redirect()->route('roles.index')->with('mensaje', 'Rol no encontrado')->with('color', 'danger');
+        }
     }
 
     public function update(Request $request, $id)

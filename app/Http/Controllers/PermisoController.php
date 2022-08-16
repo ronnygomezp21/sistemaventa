@@ -26,7 +26,7 @@ class PermisoController extends Controller
 
     public function show($id)
     {
-        return redirect()->route('permisos.index');
+        return abort(404);
     }
 
     public function create()
