@@ -46,9 +46,22 @@ class RolController extends Controller
                 'name.unique' => 'El nombre del rol ya existe',
                 'permissions.required' => 'Debe seleccionar al menos un permiso',
             ]);
-        $role = Role::create(['name' => $request->name]);
-        $role->syncPermissions($request->permissions);
-        return redirect()->route('roles.index')->with('mensaje', 'Rol creado con éxito')->with('color', 'success');
+
+        DB::beginTransaction();
+
+        try {
+
+            $role = Role::create(['name' => $request->name]);
+            $role->syncPermissions($request->permissions);
+            DB::commit();
+            return redirect()->route('roles.index')->with('mensaje', 'Rol creado con éxito')->with('color', 'success');
+
+        } catch (\Exception$e) {
+
+            DB::rollback();
+            return redirect()->route('roles.index')->with('mensaje', 'Error al crear el rol')->with('color', 'danger');
+        }
+
     }
 
     public function edit($id)

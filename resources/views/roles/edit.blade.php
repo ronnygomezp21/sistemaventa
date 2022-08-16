@@ -3,19 +3,7 @@
 @section('title', 'Crear Role')
 
 @section('content_header')
-    <div class="container-fluid">
-        @if ($errors->any())
-            <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                <strong>¡Revise los campos!</strong>
-                @foreach ($errors->all() as $error)
-                    <span class="badge badge-danger">{{ $error }}</span>
-                @endforeach
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
-    </div>
+    <div class="container-fluid"></div>
 @stop
 
 @section('content')
@@ -45,13 +33,11 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-info">Guardar</button>
+                        <button type="submit" class="btn btn-info">Actualizar</button>
                     </div>
                 </form>
             </div>
-            <div class="body-footer">
-
-            </div>
+            <div class="card-footer"></div>
         </div>
     </main>
 @stop
