@@ -49,6 +49,9 @@
                     </div>
                 </form>
             </div>
+            <div class="body-footer">
+
+            </div>
         </div>
     </main>
 @stop

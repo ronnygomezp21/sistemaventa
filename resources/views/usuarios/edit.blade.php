@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar Cliente')
+@section('title', 'Editar Usuario')
 
 
 @section('content_header')
@@ -11,7 +11,7 @@
 @section('content')
     <div class="card card-info">
         <div class="card-header">
-            <h3 class="card-title">Editar Cliente</h3>
+            <h3 class="card-title">Editar Usuario</h3>
         </div>
         <div class="card-body">
             <form action="{{ route('usuarios.update', $user->id) }}" method="post">
@@ -80,11 +80,13 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-4">
-                        <button type="submit" class="btn btn-info">Guardar</button>
+                        <button type="submit" class="btn btn-info">Actualizar</button>
                     </div>
                 </div>
             </form>
         </div>
-    </div>
+        <div class="card-footer">
+
+        </div>
     </div>
 @stop
