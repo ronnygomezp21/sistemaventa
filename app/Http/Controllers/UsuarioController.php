@@ -48,7 +48,8 @@ class UsuarioController extends Controller
             $usuario->save();
             $usuario->assignRole($request->roles);
             DB::commit();
-            return redirect()->route('usuarios.index')
+            return redirect()
+                ->route('usuarios.index')
                 ->with('mensaje', 'Usuario creado correctamente')
                 ->with('color', 'success');
 
@@ -74,8 +75,9 @@ class UsuarioController extends Controller
 
         } catch (ModelNotFoundException $e) {
 
-            return redirect()->route('usuarios.index')
-                ->with('mensaje', 'Cliente no encontrado')
+            return redirect()
+                ->route('usuarios.index')
+                ->with('mensaje', 'Usuario no encontrado')
                 ->with('color', 'danger');
         }
     }
@@ -85,6 +87,7 @@ class UsuarioController extends Controller
         DB::beginTransaction();
 
         try {
+
             $input = $request->all();
             if (!empty($input['password'])) {
                 $input['password'] = Hash::make($input['password']);
@@ -98,13 +101,15 @@ class UsuarioController extends Controller
             DB::table('model_has_roles')->where('model_id', $id)->delete();
             $usuario->assignRole($request->roles);
             DB::commit();
-            return redirect()->route('usuarios.index')
+            return redirect()
+                ->route('usuarios.index')
                 ->with('mensaje', 'Usuario actualizado correctamente')
                 ->with('color', 'success');
 
         } catch (ModelNotFoundException $e) {
             DB::rollback();
-            return redirect()->route('usuarios.index')
+            return redirect()
+                ->route('usuarios.index')
                 ->with('mensaje', 'Error al actualizar el usuario')
                 ->with('color', 'danger');
         }
@@ -112,7 +117,24 @@ class UsuarioController extends Controller
 
     public function destroy($id)
     {
-        User::find($id)->delete();
-        return redirect()->route('usuarios.index');
+        DB::beginTransaction();
+
+        try {
+
+            $usuario = User::findOrFail($id);
+            $usuario->delete();
+            DB::commit();
+            return redirect()
+                ->route('usuarios.index')
+                ->with('mensaje', 'Usuario eliminado correctamente')
+                ->with('color', 'success');
+
+        } catch (ModelNotFoundException $e) {
+            DB::rollback();
+            return redirect()
+                ->route('usuarios.index')
+                ->with('mensaje', 'Error al eliminar el usuario')
+                ->with('color', 'danger');
+        }
     }
 }
