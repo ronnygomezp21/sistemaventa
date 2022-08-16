@@ -5,7 +5,7 @@
 @section('content_header')
     <h3>Listado de usuarios</h3>
     @can('crear-usuario')
-        <a class="btn btn-info" href="{{ route('usuarios.create') }}"><i class="fa-solid fa-plus"></i></a><br>
+        <a class="btn btn-info" href="{{ route('usuarios.create') }}"><i class="fa-solid fa-plus"></i></a>
     @endcan
 @stop
 @section('content')

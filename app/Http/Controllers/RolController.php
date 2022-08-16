@@ -30,19 +30,25 @@ class RolController extends Controller
 
     public function create()
     {
-        $permissions = Permission::all();
+        $permissions = Permission::select('id', 'name')->get();
         return view('roles.create', compact('permissions'));
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'permissions' => 'required',
-        ]);
+        $this->validate($request,
+            [
+                'name' => 'required|unique:roles,name',
+                'permissions' => 'required',
+            ],
+            [
+                'name.required' => 'El nombre del rol es obligatorio',
+                'name.unique' => 'El nombre del rol ya existe',
+                'permissions.required' => 'Debe seleccionar al menos un permiso',
+            ]);
         $role = Role::create(['name' => $request->name]);
         $role->syncPermissions($request->permissions);
-        return redirect()->route('roles.index')->with('success', 'Rol creado con éxito');
+        return redirect()->route('roles.index')->with('mensaje', 'Rol creado con éxito')->with('color', 'success');
     }
 
     public function edit($id)

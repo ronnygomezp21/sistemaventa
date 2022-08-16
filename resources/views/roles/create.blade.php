@@ -4,17 +4,6 @@
 
 @section('content_header')
     <div class="container-fluid">
-        @if ($errors->any())
-            <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                <strong>¡Revise los campos!</strong>
-                @foreach ($errors->all() as $error)
-                    <span class="badge badge-danger">{{ $error }}</span>
-                @endforeach
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
     </div>
 @stop
 
@@ -28,22 +17,35 @@
                 @csrf
                 <div class="form-group">
                     <label for="name">Nombre rol:</label>
-                    <input type="text" name="name" class="form-control" value="{{ old('name') }}">
+                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                        value="{{ old('name') }}" autofocus>
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="permissions">Permisos:</label>
-                    <select name="permissions[]" class="form-control select2" multiple="multiple"
-                        data-placeholder="Seleccione los permisos..." style="width: 100%;">
+                    <select name="permissions[]" class="form-control @error('permissions') is-invalid @enderror select2"
+                        multiple="multiple" data-placeholder="Seleccione los permisos..." style="width: 100%;">
                         @foreach ($permissions as $permission)
-                            <option value="{{ $permission->id }}">{{ $permission->name }}</option>
+                            <option @if (in_array($permission->id, old('permissions', []))) selected @endif value="{{ $permission->id }}">
+                                {{ $permission->name }}</option>
                         @endforeach
                     </select>
+                    @error('permissions')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-info">Guardar</button>
                 </div>
             </form>
         </div>
+        <div class="card-footer"></div>
     </div>
 @stop
 @section('js')

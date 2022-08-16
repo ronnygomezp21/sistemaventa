@@ -5,7 +5,7 @@
 @section('content_header')
     <h3>Listado de permisos</h3>
     @can('crear-permiso')
-        <a class="btn btn-info" href="{{ route('permisos.create') }}"><i class="fa-solid fa-plus"></i></a></button>
+        <a class="btn btn-info" href="{{ route('permisos.create') }}"><i class="fa-solid fa-plus"></i></a>
     @endcan
 @stop
 @section('content')
