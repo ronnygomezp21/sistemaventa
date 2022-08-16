@@ -89,7 +89,7 @@ class UsuarioController extends Controller
             if (!empty($input['password'])) {
                 $input['password'] = Hash::make($input['password']);
             } else {
-                $input = Arr::except($request, array('password'));
+                $input = Arr::except($input, array('password'));
             }
 
             $usuario = User::findOrFail($id);
