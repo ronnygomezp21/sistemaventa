@@ -42,8 +42,7 @@
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label for="password">Contraseña:</label>
-                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
-                            value="{{ old('password') }}">
+                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -68,10 +67,8 @@
                         <select name="roles" id="roles" class="form-control @error('roles') is-invalid @enderror">
                             <option value="">Seleccione un rol</option>
                             @foreach ($roles as $name => $name)
-                                <option value="{{ $name }}"
-                                    {{ $user->name ? 'selected' : '' }}>
-                                    {{ $name }}
-                                </option>
+                                <option @if (old('roles', $user->roles->first()->name == $name)) selected @endif value="{{ $name }}">
+                                    {{ $name }}</option>
                             @endforeach
                         </select>
                         @error('roles')

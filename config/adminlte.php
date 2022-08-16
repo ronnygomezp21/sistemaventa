@@ -240,19 +240,19 @@ return [
         [
             'text' => 'Usuarios',
             'url' => '/usuarios',
-            'icon' => 'fa-solid fa-users',
+            'icon' => 'fas fa-address-book',
             'can' => 'ver-usuario',
         ],
         [
             'text' => 'Permisos',
             'route' => 'permisos.index',
-            'icon' => 'fa-solid fa-wrench',
+            'icon' => 'fa-solid fa-list-check',
             'can' => 'ver-permiso',
         ],
         [
             'text' => 'Roles',
             'url' => '/roles',
-            'icon' => 'fa-solid fa-wrench',
+            'icon' => 'fa-solid fa-gears',
             'can' => 'ver-rol',
         ],
         [
@@ -267,7 +267,7 @@ return [
         [
             'text' => 'Productos',
             'route' => 'productos.index',
-            'icon' => 'fa-brands fa-product-hunt',
+            'icon' => 'fa-solid fa-box',
             'can' => 'ver-producto',
 
         ],

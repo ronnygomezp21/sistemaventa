@@ -5,11 +5,16 @@
 @section('content_header')
     <h3>Listado de usuarios</h3>
     @can('crear-usuario')
-        <a class="btn btn-info" href="{{ route('usuarios.create') }}"><i class="fa-solid fa-plus"></i></a>
+        <a class="btn btn-info" href="{{ route('usuarios.create') }}"><i class="fa-solid fa-plus"></i></a><br>
     @endcan
 @stop
-
 @section('content')
+    @if (session('mensaje'))
+        <div class="alert alert-{{ session('color') }} alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            {{ session('mensaje') }}
+        </div>
+    @endif
     <main>
         <div class="card card-secondary">
             <div class="card-header">

@@ -41,8 +41,8 @@
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label for="password">Contraseña:</label>
-                        <input id="password" type="password" name="password" class="form-control @error('password') is-invalid @enderror"
-                            value="{{ old('password') }}">
+                        <input id="password" type="password" name="password"
+                            class="form-control @error('password') is-invalid @enderror">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -52,8 +52,7 @@
                     <div class="form-group col-md-4">
                         <label for="confirm_password">Confirmar contraseña:</label>
                         <input type="password" name="confirm_password"
-                            class="form-control @error('confirm_password') is-invalid @enderror"
-                            value="{{ old('confirm_password') }}">
+                            class="form-control @error('confirm_password') is-invalid @enderror">
                         @error('confirm_password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -67,7 +66,7 @@
                         <select name="roles" id="role" class="form-control @error('roles') is-invalid @enderror">
                             <option value="">Seleccione un rol</option>
                             @foreach ($roles as $name => $name)
-                                <option value="{{ $name }}">{{ $name }}</option>
+                                <option  @if (old('roles') == $name) selected @endif value="{{ $name }}">{{ $name }}</option>
                             @endforeach
                         </select>
                         @error('roles')
@@ -90,66 +89,66 @@
 @stop
 @section('js')
     <script>
-        $(document).ready(function() {
-            $("#form_create_usuario").validate({
-                rules: {
-                    name: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 50,
-                        
+        /*$(document).ready(function() {
+                $("#form_create_usuario").validate({
+                    rules: {
+                        name: {
+                            required: true,
+                            minlength: 3,
+                            maxlength: 50,
+                            
+                        },
+                        email: {
+                            required: true,
+                            email: true,
+                        },
+                        password: {
+                            required: true,
+                            minlength: 5
+                        },
+                        confirm_password: {
+                            required: true,
+                            minlength: 5,
+                            equalTo: "#password"
+                        },
+                        roles: {
+                            required: true
+                        }
                     },
-                    email: {
-                        required: true,
-                        email: true,
+                    messages: {
+                        name: {
+                            required: "Este campo es requerido",
+                            minlength: "Este campo debe tener al menos 3 caracteres"
+                        },
+                        email: {
+                            required: "Este campo es requerido",
+                            email: "Este campo debe ser un correo valido"
+                        },
+                        password: {
+                            required: "Este campo es requerido",
+                            minlength: "Este campo debe tener al menos 6 caracteres"
+                        },
+                        confirm_password: {
+                            required: "Este campo es requerido",
+                            minlength: "Este campo debe tener al menos 6 caracteres",
+                            equalTo: "Las contraseñas no coinciden"
+                        },
+                        roles: {
+                            required: "Este campo es requerido"
+                        }
                     },
-                    password: {
-                        required: true,
-                        minlength: 5
+                    errorElement: 'strong',
+                    errorPlacement: function(error, element) {
+                        error.addClass('invalid-feedback');
+                        element.closest('.form-group').append(error);
                     },
-                    confirm_password: {
-                        required: true,
-                        minlength: 5,
-                        equalTo: "#password"
+                    highlight: function(element, errorClass, validClass) {
+                        $(element).addClass('is-invalid').removeClass('is-valid');
                     },
-                    roles: {
-                        required: true
-                    }
-                },
-                messages: {
-                    name: {
-                        required: "Este campo es requerido",
-                        minlength: "Este campo debe tener al menos 3 caracteres"
+                    unhighlight: function(element, errorClass, validClass) {
+                        $(element).removeClass('is-invalid').addClass('is-valid');
                     },
-                    email: {
-                        required: "Este campo es requerido",
-                        email: "Este campo debe ser un correo valido"
-                    },
-                    password: {
-                        required: "Este campo es requerido",
-                        minlength: "Este campo debe tener al menos 6 caracteres"
-                    },
-                    confirm_password: {
-                        required: "Este campo es requerido",
-                        minlength: "Este campo debe tener al menos 6 caracteres",
-                        equalTo: "Las contraseñas no coinciden"
-                    },
-                    roles: {
-                        required: "Este campo es requerido"
-                    }
-                },
-                errorElement: 'strong',
-                errorPlacement: function(error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function(element, errorClass, validClass) {
-                    $(element).addClass('is-invalid').removeClass('is-valid');
-                },
-                unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid').addClass('is-valid');
-                },
-            });
-        });
+                });
+            });*/
     </script>
 @stop

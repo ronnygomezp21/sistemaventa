@@ -42,12 +42,12 @@ Route::middleware([
     Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
     Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
     //fin rutas cliente
+    
+});
+
+Route::group(['middleware' => ['auth']], function () {
     route::resource('roles', RolController::class);
     route::resource('usuarios', UsuarioController::class);
     Route::get('categorias', [CategoriaController::class, 'index'])->name('categorias.index');
     route::resource('permisos', PermisoController::class);
 });
-
-/*Route::group(['middleware' => ['auth']], function () {
-
-});*/

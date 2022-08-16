@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateUsuarioRequest;
+use App\Http\Requests\UpdateUsuarioRequest;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +25,7 @@ class UsuarioController extends Controller
 
     public function index(Request $request)
     {
-        $usuarios = User::paginate(5);
+        $usuarios = User::with('roles')->paginate(5, ['id', 'name', 'email', 'estado']);
         return view('usuarios.index', compact('usuarios'));
     }
 
@@ -30,63 +33,81 @@ class UsuarioController extends Controller
     {
         $roles = Role::pluck('name', 'name')->all();
         return view('usuarios.create', compact('roles'));
-        /* foreach ($roles as $id=>$name) {
-    echo "ID: ", $id;
-    echo " Name: ", $name,"<br>";
-    }*/
     }
 
-    public function store(Request $request)
+    public function store(CreateUsuarioRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm_password',
-            'confirm_password' => 'required',
-            'roles' => 'required',
-        ]);
+        DB::beginTransaction();
 
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
+        try {
 
-        $user = User::create($input);
-        $user->assignRole($request->input('roles'));
+            $usuario = new User();
+            $usuario->name = $request->name;
+            $usuario->email = $request->email;
+            $usuario->password = Hash::make($request->password);
+            $usuario->save();
+            $usuario->assignRole($request->roles);
+            DB::commit();
+            return redirect()->route('usuarios.index')
+                ->with('mensaje', 'Usuario creado correctamente')
+                ->with('color', 'success');
 
-        return redirect()->route('usuarios.index');
+        } catch (\Exception$e) {
+
+            DB::rollback();
+            return redirect()
+                ->route('usuarios.index')
+                ->with('mensaje', 'Error al crear el usuario')
+                ->with('color', 'danger');
+        }
     }
 
     public function edit($id)
     {
-        $user = User::find($id);
-        $roles = Role::pluck('name', 'name')->all();
-        $userRole = $user->roles->pluck('name', 'name')->all();
+        try {
 
-        return view('usuarios.edit', compact('user', 'roles', 'userRole'));
+            $user = User::select('id', 'name', 'email')->findOrFail($id);
+            $roles = Role::pluck('name', 'name')->all();
+            //$userRole = $user->roles->pluck('name', 'name')->all();
+            /*chequear esta parte al pasarle la variable userRole*/
+            return view('usuarios.edit', compact('user', 'roles'));
+
+        } catch (ModelNotFoundException $e) {
+
+            return redirect()->route('usuarios.index')
+                ->with('mensaje', 'Cliente no encontrado')
+                ->with('color', 'danger');
+        }
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateUsuarioRequest $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'same:confirm-password',
-            'roles' => 'required',
-        ]);
+        DB::beginTransaction();
 
-        $input = $request->all();
-        if (!empty($input['password'])) {
-            $input['password'] = Hash::make($input['password']);
-        } else {
-            $input = Arr::except($input, array('password'));
+        try {
+            $input = $request->all();
+            if (!empty($input['password'])) {
+                $input['password'] = Hash::make($input['password']);
+            } else {
+                $input = Arr::except($request, array('password'));
+            }
+
+            $usuario = User::findOrFail($id);
+            $usuario->update($input);
+
+            DB::table('model_has_roles')->where('model_id', $id)->delete();
+            $usuario->assignRole($request->roles);
+            DB::commit();
+            return redirect()->route('usuarios.index')
+                ->with('mensaje', 'Usuario actualizado correctamente')
+                ->with('color', 'success');
+
+        } catch (ModelNotFoundException $e) {
+            DB::rollback();
+            return redirect()->route('usuarios.index')
+                ->with('mensaje', 'Error al actualizar el usuario')
+                ->with('color', 'danger');
         }
-
-        $user = User::find($id);
-        $user->update($input);
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
-
-        $user->assignRole($request->input('roles'));
-
-        return redirect()->route('usuarios.index');
     }
 
     public function destroy($id)
