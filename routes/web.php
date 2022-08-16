@@ -5,6 +5,8 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
+use App\Models\Categoria;
+use App\Models\Cliente;
 use App\Models\Producto;
 use App\Models\User;
 use GuzzleHttp\Middleware;
@@ -33,7 +35,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         $usuarios = User::count();
         $productos = Producto::count();
-        return view('dashboard', compact('usuarios', 'productos'));
+        $categorias = Categoria::count();
+        $clientes = Cliente::count();
+        return view('dashboard', compact('usuarios', 'productos', 'categorias', 'clientes'));
     })->name('dashboard');
     Route::get('/productos', [App\Http\Controllers\ProductoController::class, 'index'])->name('productos.index');
     Route::get('/producto/create', [App\Http\Controllers\ProductoController::class, 'create'])->name('producto.create');
@@ -42,7 +46,7 @@ Route::middleware([
     Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
     Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
     //fin rutas cliente
-    
+
 });
 
 Route::group(['middleware' => ['auth']], function () {
