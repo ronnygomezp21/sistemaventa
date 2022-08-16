@@ -75,6 +75,8 @@
                     <div class="float-right">
                         {{ $clientes->links() }}
                     </div>
+                    <span>{{ $clientes->count() }} registros | página {{ $clientes->currentPage() }} de
+                        {{ $clientes->lastPage() }}</span>
                 </div>
             </div>
         </div>

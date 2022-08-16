@@ -3,35 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\DB;
 
 class RolController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:ver-rol', ['only' => ['index']]);
+        $this->middleware('permission:ver-rol', ['only' => ['index', 'show']]);
         $this->middleware('permission:crear-rol', ['only' => ['create', 'store']]);
         $this->middleware('permission:editar-rol', ['only' => ['edit', 'update']]);
         $this->middleware('permission:borrar-rol', ['only' => ['destroy']]);
     }
-   
+
     public function index()
     {
-        $roles = Role::paginate(5);
+        $roles = Role::paginate(5, ['id', 'name']);
         return view('roles.index', compact('roles'));
     }
 
-   
+    public function show($id)
+    {
+        return redirect()->route('roles.index');
+    }
+
     public function create()
     {
         $permissions = Permission::all();
         return view('roles.create', compact('permissions'));
     }
 
-    
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -42,7 +44,7 @@ class RolController extends Controller
         $role->syncPermissions($request->permissions);
         return redirect()->route('roles.index')->with('success', 'Rol creado con éxito');
     }
-   
+
     public function edit($id)
     {
         $role = Role::find($id);
@@ -53,7 +55,6 @@ class RolController extends Controller
         return view('roles.edit', compact('role', 'permissions', 'rolePermissions'));
     }
 
-    
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -67,7 +68,6 @@ class RolController extends Controller
         return redirect()->route('roles.index')->with('success', 'Rol actualizado con éxito');
     }
 
-    
     public function destroy($id)
     {
         DB::table("roles")->where('id', $id)->delete();

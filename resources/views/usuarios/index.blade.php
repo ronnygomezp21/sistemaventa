@@ -84,8 +84,10 @@
             </div>
             <div class="card-footer">
                 {{ $usuarios->links() }}
+
+                <span>{{ $usuarios->count() }} registros | página {{ $usuarios->currentPage() }} de
+                    {{ $usuarios->lastPage() }}</span>
             </div>
-        </div>
         </div>
     </main>
 @stop

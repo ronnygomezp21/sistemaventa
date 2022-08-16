@@ -64,6 +64,9 @@
             </div>
             <div class="card-footer">
                 {{ $permisos->links() }}
+
+                <span>{{ $permisos->count() }} registros | página {{ $permisos->currentPage() }} de
+                    {{ $permisos->lastPage() }}</span>
             </div>
         </div>
     </main>

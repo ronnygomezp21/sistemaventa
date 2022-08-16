@@ -17,7 +17,7 @@ class UsuarioController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:ver-usuario', ['only' => ['index']]);
+        $this->middleware('permission:ver-usuario', ['only' => ['index', 'show']]);
         $this->middleware('permission:crear-usuario', ['only' => ['create', 'store']]);
         $this->middleware('permission:editar-usuario', ['only' => ['edit', 'update']]);
         $this->middleware('permission:borrar-usuario', ['only' => ['destroy']]);
@@ -27,6 +27,11 @@ class UsuarioController extends Controller
     {
         $usuarios = User::with('roles')->paginate(5, ['id', 'name', 'email', 'estado']);
         return view('usuarios.index', compact('usuarios'));
+    }
+
+    public function show($id)
+    {
+        return redirect()->route('usuarios.index');
     }
 
     public function create()

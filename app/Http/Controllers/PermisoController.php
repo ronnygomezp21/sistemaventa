@@ -10,8 +10,10 @@ class PermisoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:ver-permiso', ['only' => ['index']]);
+        $this->middleware('permission:ver-permiso', ['only' => ['index', 'show']]);
         $this->middleware('permission:crear-permiso', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-permiso', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:borrar-permiso', ['only' => ['destroy']]);
     }
 
     public function index()
@@ -20,6 +22,11 @@ class PermisoController extends Controller
             ->orderBy('id', 'asc')
             ->paginate(4);
         return view('permiso.index', compact('permisos'));
+    }
+
+    public function show($id)
+    {
+        return redirect()->route('permisos.index');
     }
 
     public function create()
