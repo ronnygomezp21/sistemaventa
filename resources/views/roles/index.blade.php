@@ -59,6 +59,9 @@
             </div>
             <div class="card-footer">
                 {{ $roles->links() }}
+
+                <span>{{ $roles->count() }} registros | página {{ $roles->currentPage() }} de
+                    {{ $roles->lastPage() }}</span>
             </div>
         </div>
     </main>
