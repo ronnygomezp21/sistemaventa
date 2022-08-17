@@ -43,15 +43,15 @@ Route::middleware([
     Route::get('/producto/create', [App\Http\Controllers\ProductoController::class, 'create'])->name('producto.create');
     Route::post('/productos', [App\Http\Controllers\ProductoController::class, 'store'])->name('producto.store');
     //rutas cliente
-    Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
-    Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
+    Route::get('clientes', [ClienteController::class, 'index'])->name('clientes.index');
+    Route::get('clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
     //fin rutas cliente
 
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    route::resource('roles', RolController::class);
-    route::resource('usuarios', UsuarioController::class);
+    route::resource('administrador/roles', RolController::class);
+    route::resource('administrador/usuarios', UsuarioController::class);
     Route::get('categorias', [CategoriaController::class, 'index'])->name('categorias.index');
-    route::resource('permisos', PermisoController::class);
+    route::resource('administrador/permisos', PermisoController::class);
 });

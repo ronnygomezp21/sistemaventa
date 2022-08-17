@@ -232,14 +232,14 @@ return [
         ],
         // Sidebar items:
         [
-            'text' => 'Inicio',
+            'text' => 'Dashboard',
             'url' => '/dashboard',
             'icon' => 'fas fa-tachometer-alt',
             'can' => 'ver-inicio',
         ],
         [
             'text' => 'Usuarios',
-            'url' => '/usuarios',
+            'route' => 'usuarios.index',
             'icon' => 'fas fa-address-book',
             'can' => 'ver-usuario',
         ],
@@ -251,7 +251,7 @@ return [
         ],
         [
             'text' => 'Roles',
-            'url' => '/roles',
+            'route' => 'roles.index',
             'icon' => 'fa-solid fa-gears',
             'can' => 'ver-rol',
         ],
@@ -260,7 +260,7 @@ return [
         ],
         [
             'text' => 'Clientes',
-            'url' => '/clientes',
+            'route' => 'clientes.index',
             'icon' => 'fa-solid fa-users',
             'can' => 'ver-cliente',
         ],
