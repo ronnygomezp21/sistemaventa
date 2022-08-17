@@ -11,7 +11,7 @@
 @section('content')
     <div class="card card-primary card-outline">
         <div class="card-header">
-            <h3 class="card-title">Crear usuario</h3>
+            <h3 class="card-title">Crear Usuario</h3>
         </div>
         <div class="card-body">
             <form id="form_create_usuario" action="{{ route('usuarios.store') }}" method="post">
