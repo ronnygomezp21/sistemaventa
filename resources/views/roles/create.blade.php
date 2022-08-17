@@ -8,7 +8,7 @@
 @stop
 
 @section('content')
-    <div class="card card-info">
+    <div class="card card-primary card-outline">
         <div class="card-header">
             <h3 class="card-title">Crear Rol</h3>
         </div>
@@ -41,7 +41,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-info">Guardar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
         </div>

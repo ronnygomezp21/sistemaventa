@@ -8,7 +8,7 @@
 
 @section('content')
     <main>
-        <div class="card card-info">
+        <div class="card card-primary card-outline">
             <div class="card-header">
                 <h3 class="card-title">Editar Rol</h3>
             </div>
@@ -33,7 +33,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-info">Actualizar</button>
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
                     </div>
                 </form>
             </div>

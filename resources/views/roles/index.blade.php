@@ -5,7 +5,7 @@
 @section('content_header')
     <h3>Listado de roles</h3>
     @can('crear-rol')
-        <a class="btn btn-info" href="{{ route('roles.create') }}"><i class="fa-solid fa-plus"></i></a>
+        <a class="btn btn-primary" href="{{ route('roles.create') }}"><i class="fa-solid fa-plus"></i></a>
     @endcan
 @stop
 
@@ -17,7 +17,7 @@
         </div>
     @endif
     <main>
-        <div class="card card-secondary">
+        <div class="card card-primary card-outline">
             <div class="card-header">
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
