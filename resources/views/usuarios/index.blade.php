@@ -5,7 +5,7 @@
 @section('content_header')
     <h3>Listado de usuarios</h3>
     @can('crear-usuario')
-        <a class="btn btn-info" href="{{ route('usuarios.create') }}"><i class="fa-solid fa-plus"></i></a>
+        <a class="btn btn-primary" href="{{ route('usuarios.create') }}"><i class="fa-solid fa-plus"></i></a>
     @endcan
 @stop
 @section('content')
@@ -16,7 +16,7 @@
         </div>
     @endif
     <main>
-        <div class="card card-secondary">
+        <div class="card card-primary card-outline">
             <div class="card-header">
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">

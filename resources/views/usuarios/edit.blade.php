@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-    <div class="card card-info">
+    <div class="card card-primary card-outline">
         <div class="card-header">
             <h3 class="card-title">Editar Usuario</h3>
         </div>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-4">
-                        <button type="submit" class="btn btn-info">Actualizar</button>
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
                     </div>
                 </div>
             </form>
