@@ -66,7 +66,7 @@ return [
 
     'usermenu_enabled' => true,
     'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-secondary',
+    'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => true,
     'usermenu_desc' => true,
     'usermenu_profile_url' => true,
