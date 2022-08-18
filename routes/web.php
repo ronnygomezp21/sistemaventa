@@ -54,4 +54,5 @@ Route::group(['middleware' => ['auth']], function () {
     route::resource('administrador/usuarios', UsuarioController::class);
     Route::get('categorias', [CategoriaController::class, 'index'])->name('categorias.index');
     route::resource('administrador/permisos', PermisoController::class);
+    Route::match(['get'], 'user/profile', function () {return redirect('editar/perfil');});
 });
