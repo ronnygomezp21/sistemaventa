@@ -14,9 +14,9 @@
 
     {{-- Title --}}
     <title>
-        @yield('title_prefix', config('adminlte.title_prefix', ''))
-        @yield('title', config('adminlte.title', 'AdminLTE 3'))
-        @yield('title_postfix', config('adminlte.title_postfix', ''))
+        @yield('title_prefix', config('adminlte.title_prefix'))
+        @yield('title', config('', 'Login'))
+        @yield('title_postfix', config('adminlte.title_postfix'))
     </title>
 
     {{-- Custom stylesheets (pre AdminLTE) --}}
