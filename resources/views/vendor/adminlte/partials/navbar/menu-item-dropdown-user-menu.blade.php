@@ -16,17 +16,18 @@
 <li class="nav-item dropdown user-menu">
 
     {{-- User menu toggler --}}
-    <a href="#" class="nav-link" data-toggle="dropdown" aria-expanded="true">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
         @if (config('adminlte.usermenu_image'))
-            <img src="{{ Auth::user()->adminlte_image() }}" class="user-image image-circle" alt="{{ Auth::user()->name }}">
+            <img src="{{ Auth::user()->adminlte_image() }}" class="user-image img-circle" alt="{{ Auth::user()->name }}">
         @endif
-        <span @if (config('adminlte.usermenu_image')) class="badge badge-primary" @endif>
+        <span @if (config('adminlte.usermenu_image')) class="d-none d-md-inline badge badge-primary" @endif>
             {{ Auth::user()->name }} - {{ Auth::user()->adminlte_desc() }}
         </span>
     </a>
 
     {{-- User menu dropdown --}}
-    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+
         <div class="dropdown-header bg-light py-2"><strong>Configuración</strong></div>
         <div class="dropdown-divider"></div>
         @if ($profile_url)
@@ -48,5 +49,7 @@
             {{ csrf_field() }}
         </form>
 
-    </div>
+
+    </ul>
+
 </li>
