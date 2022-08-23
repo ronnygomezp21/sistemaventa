@@ -8,7 +8,7 @@
     @php( $password_email_url = $password_email_url ? url($password_email_url) : '' )
 @endif
 
-@section('auth_header', __('adminlte::adminlte.password_reset_message'))
+@section('auth_header', __('Resetar Contraseña'))
 
 @section('auth_body')
 
