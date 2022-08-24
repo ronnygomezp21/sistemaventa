@@ -3,18 +3,16 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 class="m-0">!Bienvenido/a {{ auth()->user()->name }}!</h1>
-            </div>
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1 class="m-0">!Bienvenido/a {{ auth()->user()->name }}!</h1>
         </div>
     </div>
 @stop
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
+    <div class="row">
+        @can('ver-usuario')
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
                     <span class="info-box-icon bg-primary elevation-1"><a href="{{ route('usuarios.index') }}"><i
@@ -27,6 +25,8 @@
                     </div>
                 </div>
             </div> <!-- /.col -->
+        @endcan
+        @can('ver-cliente')
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
                     <span class="info-box-icon bg-success elevation-1"><a href="{{ route('clientes.index') }}"><i
@@ -39,6 +39,8 @@
                     </div>
                 </div>
             </div> <!-- /.col -->
+        @endcan
+        @can('ver-producto')
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
                     <span class="info-box-icon bg-warning elevation-1"><a href="{{ route('productos.index') }}"><i
@@ -51,6 +53,8 @@
                     </div>
                 </div>
             </div> <!-- /.col -->
+        @endcan
+        @can('ver-categoria')
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
                     <span class="info-box-icon bg-danger elevation-1"><a href="{{ route('categorias.index') }}"><i
@@ -63,6 +67,6 @@
                     </div>
                 </div>
             </div> <!-- /.col -->
-        </div>
+        @endcan
     </div>
 @stop
