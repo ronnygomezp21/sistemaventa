@@ -15,74 +15,54 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            @can('ver-usuario')
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-primary">
-                        <div class="inner">
-                            <h3>{{ $usuarios }}</h3>
-                            <p>Usuarios Registrados</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-address-book"></i>
-                        </div>
-                        <a href="{{ route('usuarios.index') }}" class="small-box-footer"><i
-                                class="fas fa-arrow-circle-right"></i></a>
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-primary elevation-1"><a href="{{ route('usuarios.index') }}"><i
+                                class="fas fa-address-book"></i></a></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Usuarios</span>
+                        <span class="info-box-number">
+                            {{ $usuarios }}
+                        </span>
                     </div>
                 </div>
-            @endcan
-            <!-- ./col -->
-            @can('ver-cliente')
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3>{{ $clientes }}</h3>
-                            <p>Clientes Registrados</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fa-solid fa-users"></i>
-                        </div>
-                        <a href="{{ route('clientes.index') }}" class="small-box-footer"><i
-                                class="fas fa-arrow-circle-right"></i></a>
+            </div> <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-success elevation-1"><a href="{{ route('clientes.index') }}"><i
+                                class="fa-solid fa-users"></i></a></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Clientes</span>
+                        <span class="info-box-number">
+                            {{ $clientes }}
+                        </span>
                     </div>
                 </div>
-            @endcan
-            @can('ver-producto')
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3>{{ $productos }}</h3>
-                            <p>Productos Registrados</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fa-solid fa-box"></i>
-                        </div>
-                        <a href="{{ route('productos.index') }}" class="small-box-footer"><i
-                                class="fas fa-arrow-circle-right"></i></a>
+            </div> <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-warning elevation-1"><a href="{{ route('productos.index') }}"><i
+                                class="fa-solid fa-box"></i></a></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Productos</span>
+                        <span class="info-box-number">
+                            {{ $productos }}
+                        </span>
                     </div>
                 </div>
-            @endcan
-
-            <!-- ./col -->
-            @can('ver-categoria')
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h3>{{ $categorias }}</h3>
-                            <p>Categorias Registradas</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fa-solid fa-tag"></i>
-                        </div>
-                        <a href="{{ route('categorias.index') }}" class="small-box-footer"><i
-                                class="fas fa-arrow-circle-right"></i></a>
+            </div> <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-danger elevation-1"><a href="{{ route('categorias.index') }}"><i
+                                class="fa-solid fa-tag"></i></a></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Categorias</span>
+                        <span class="info-box-number">
+                            {{ $categorias }}
+                        </span>
                     </div>
                 </div>
-            @endcan
-            <!-- ./col -->
+            </div> <!-- /.col -->
         </div>
     </div>
 @stop
