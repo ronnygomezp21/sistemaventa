@@ -18,7 +18,8 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="name">Nombre rol:</label>
-                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                        <input type="text" name="name"
+                            class="form-control  @error('name') is-invalid @enderror"
                             value="{{ old('name', $role->name) }}">
                         @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -31,14 +32,15 @@
                         <select name="permissions[]" class="form-control @error('permissions') is-invalid @enderror select2"
                             multiple="multiple" data-placeholder="Seleccione los permisos..." style="width: 100%;">
                             @foreach ($permissions as $permission)
-                                <option {{ in_array($permission->id, $rolePermissions) ? 'selected' : '' }}>
-                                    {{ $permission->name }}
-                                </option>
+                                <option value="{{ $permission->id }}"
+                                    {{ in_array($permission->id, old('permissions', $rolePermissions, [])) ? 'selected' : '' }}>
+                                    {{ $permission->name }}</option>
                             @endforeach
                         </select>
                         @error('permissions')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
+
                             </span>
                         @enderror
                     </div>
