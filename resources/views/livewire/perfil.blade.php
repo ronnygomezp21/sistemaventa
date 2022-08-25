@@ -65,7 +65,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <button  type="submit" class="btn btn-primary btn-sm">
+                                <button wire:loading.attr="disabled" type="submit" class="btn btn-primary btn-sm">
                                     <i class="mr-2 fa fa-save"></i>Actualizar
                                 </button>
                             </form>
