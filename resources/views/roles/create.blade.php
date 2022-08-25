@@ -61,10 +61,8 @@
     <script>
         $(document).ready(function() {
             $('#permisos').select2({
-                    width: 'resolve',
-                }
-
-            );
+                width: 'resolve',
+            });
         });
     </script>
 @stop
