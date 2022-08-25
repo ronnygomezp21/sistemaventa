@@ -26,7 +26,7 @@
                 <div class="card-header p-2">
                     <ul class="nav nav-pills">
                         <li class="nav-item"><a class="nav-link active btn-sm" href="#perfil"
-                                data-toggle="tab">Perfil</a></li>
+                                data-toggle="tab">DATOS GENERALES</a></li>
                         <!--li class="nav-item"><a class="nav-link" href="#contraseña" data-toggle="tab">Contraseña</a></li-->
                     </ul>
                 </div>
