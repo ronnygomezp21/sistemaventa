@@ -102,7 +102,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-4">
-                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                        <button type="submit" class="btn btn-primary"><i class="mr-2 fa fa-save"></i>Actualizar</button>
                     </div>
                 </div>
             </form>
