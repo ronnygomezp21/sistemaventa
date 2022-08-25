@@ -19,63 +19,85 @@
                 @method('PUT')
                 <div class="row">
                     <div class="form-group col-md-4">
-                        <label for="name">Nombres:</label>
-                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                            value="{{ old('name', $user->name) }}" autofocus>
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                                value="{{ old('name', $user->name) }}" placeholder="Nombres y Apellidos" required>
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="email">Correo:</label>
-                        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
-                            value="{{ old('email', $user->email) }}">
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <label for="password">Contraseña:</label>
-                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="password_confirmation">Confirmar contraseña:</label>
-                        <input type="password" name="password_confirmation"
-                            class="form-control @error('password_confirmation') is-invalid @enderror"
-                            value="{{ old('password_confirmation') }}">
-                        @error('password_confirmation')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                            </div>
+                            <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
+                                value="{{ old('email', $user->email) }}" placeholder="Correo" required>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-4">
-                        <label for="roles">Rol:</label>
-                        <select name="roles" id="roles" class="form-control @error('roles') is-invalid @enderror">
-                            <option value="">Seleccione un rol</option>
-                            @foreach ($roles as $name => $name)
-                                <option @if (old('roles', $user->roles->first()->name == $name)) selected @endif value="{{ $name }}">
-                                    {{ $name }}</option>
-                            @endforeach
-                        </select>
-                        @error('roles')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input type="password" name="password"
+                                class="form-control @error('password') is-invalid @enderror" placeholder="Contraseña">
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-redo"></i></span>
+                            </div>
+                            <input type="password" name="password_confirmation"
+                                class="form-control @error('password_confirmation') is-invalid @enderror"
+                                value="{{ old('password_confirmation') }}" placeholder="Vuelva a ingresar la contraseña">
+                            @error('password_confirmation')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-file-invoice"></i></span>
+                            </div>
+                            <select name="roles" id="roles" class="form-control @error('roles') is-invalid @enderror"
+                                required>
+                                <option value="">Seleccione un rol</option>
+                                @foreach ($roles as $name => $name)
+                                    <option @if (old('roles', $user->roles->first()->name == $name)) selected @endif value="{{ $name }}">
+                                        {{ $name }}</option>
+                                @endforeach
+                            </select>
+                            @error('roles')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="row">
