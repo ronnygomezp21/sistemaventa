@@ -9,6 +9,8 @@ use Livewire\Component;
 class Perfil extends Component
 {
     public $name, $email;
+    //public $profile_photo_url;
+    //'https://ui-avatars.com/api/?name='.urlencode($name).'&color=7F9CF5&background=EBF4FF';
 
     protected function rules()
     {
@@ -38,6 +40,7 @@ class Perfil extends Component
     {
         $this->name = auth()->user()->name;
         $this->email = auth()->user()->email;
+        //$this->profile_photo_url = auth()->user()->profile_photo_url;
     }
 
     public function update()

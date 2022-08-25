@@ -11,9 +11,9 @@
                 <div class="card-body box-profile">
                     <div class="text-center">
                         <img class="profile-user-img img-fluid img-circle" src="{{ Auth::user()->profile_photo_url }}"
-                            alt="{{ Auth::user()->name }}">
+                            alt="{{ $name }}">
                     </div>
-                    <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
+                    <h3 class="profile-username text-center">{{ $name }}</h3>
                     <p class="text-muted text-center">{{ Auth::user()->adminlte_desc() }}</p>
                     <p class="text-muted text-center">Miembro desde
                         {{ Auth::user()->created_at->formatLocalized('%B %Y') }}</p>
@@ -25,8 +25,8 @@
             <div class="card card-primary card-outline">
                 <div class="card-header p-2">
                     <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="nav-link active btn-sm" href="#perfil"
-                                data-toggle="tab">DATOS GENERALES</a></li>
+                        <li class="nav-item"><a class="nav-link active btn-sm" href="#perfil" data-toggle="tab">DATOS
+                                GENERALES</a></li>
                         <!--li class="nav-item"><a class="nav-link" href="#contraseña" data-toggle="tab">Contraseña</a></li-->
                     </ul>
                 </div>
