@@ -5,6 +5,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\PerfilController;
 use App\Models\Categoria;
 use App\Models\Cliente;
 use App\Models\Producto;
@@ -54,6 +55,6 @@ Route::group(['middleware' => ['auth']], function () {
     route::resource('administrador/usuarios', UsuarioController::class);
     Route::get('categorias', [CategoriaController::class, 'index'])->name('categorias.index');
     route::resource('administrador/permisos', PermisoController::class);
-    Route::match(['get'], 'user/profile', function () {return redirect('configuracion/perfil');});
-
+    Route::match(['get'], 'user/profile', function () {return redirect()->route('');});
+    Route::get('configuracion/perfil', [PerfilController::class, 'index'])->name('perfil.index');
 });
