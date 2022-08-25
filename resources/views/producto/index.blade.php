@@ -5,7 +5,7 @@
 @section('content_header')
     <h3>Listado de Productos</h3>
     @can('crear-producto')
-    <a class="btn btn-primary" href="{{ route('producto.create') }}"><i class="fa-solid fa-plus"></i></a>
+        <a class="btn btn-primary" href="{{ route('producto.create') }}"><i class="fa-solid fa-plus"></i></a>
     @endcan
 
 @stop
@@ -24,7 +24,9 @@
                                 <th style="text-align: center;" scope="col">Precio</th>
                                 <th style="text-align: center;" scope="col">Categoria</th>
                                 <th style="text-align: center;" scope="col">estado</th>
-                                <th colspan="2" style="text-align: center;">Acciones</th>
+                                @can('editar-producto', 'borrar-producto')
+                                    <th style="text-align: center;" scope="col">Acciones</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -38,12 +40,12 @@
                                     <td style="text-align: center;">{{ $producto->estado }}</td>
                                     <td style="text-align: center;">
                                         @can('editar-producto')
-                                        <a href="" class="btn btn-warning btn-sm"><i
-                                                class="fa-solid fa-pen-to-square"></i></a>
+                                            <a href="" class="btn btn-warning btn-sm"><i
+                                                    class="fa-solid fa-pen-to-square"></i></a>
                                         @endcan
                                         @can('borrar-producto')
-                                        <a href="" class="btn btn-danger btn-sm"><i
-                                                class="fa-solid fa-trash-can"></i></a>
+                                            <a href="" class="btn btn-danger btn-sm"><i
+                                                    class="fa-solid fa-trash-can"></i></a>
                                         @endcan
                                     </td>
                                 </tr>

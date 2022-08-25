@@ -13,15 +13,16 @@ class Perfil extends Component
     protected function rules()
     {
         return [
-            'name' => 'required|min:6',
+            'name' => 'required|regex:/^[\pL\s\-]+$/u|min:10',
             'email' => ['required', 'email', Rule::unique('users')->ignore(auth()->user()->id)],
         ];
     }
     protected function messages()
     {
         return [
-            'name.required' => 'El nombre es requerido',
-            'name.min' => 'El nombre debe tener al menos 6 caracteres',
+            'name.required' => 'Los nombres y apelidos es requerido',
+            'name.regex' => 'Los nombres y apellidos solo puede contener letras',
+            'name.min' => 'Los nombres y apellidos debe tener al menos 10 caracteres',
             'email.required' => 'El correo es requerido',
             'email.email' => 'El correo debe ser valido',
             'email.unique' => 'El correo ya esta registrado',

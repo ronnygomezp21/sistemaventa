@@ -18,19 +18,29 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="name">Nombre rol:</label>
-                        <input type="text" name="name" class="form-control" value="{{ old('name', $role->name) }}">
+                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                            value="{{ old('name', $role->name) }}">
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="permissions">Permisos:</label>
-                        <select name="permissions[]" class="form-control select2" multiple="multiple"
-                            data-placeholder="Seleccione los permisos..." style="width: 100%;">
+                        <select name="permissions[]" class="form-control @error('permissions') is-invalid @enderror select2"
+                            multiple="multiple" data-placeholder="Seleccione los permisos..." style="width: 100%;">
                             @foreach ($permissions as $permission)
-                                <option value="{{ $permission->id }}"
-                                    {{ in_array($permission->id, $rolePermissions) ? 'selected' : '' }}>
+                                <option {{ in_array($permission->id, $rolePermissions) ? 'selected' : '' }}>
                                     {{ $permission->name }}
                                 </option>
                             @endforeach
                         </select>
+                        @error('permissions')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Actualizar</button>

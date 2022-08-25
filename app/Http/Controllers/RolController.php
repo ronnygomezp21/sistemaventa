@@ -67,8 +67,7 @@ class RolController extends Controller
 
     public function edit($id)
     {
-        try {
-
+      
             $role = Role::findOrFail($id);
             $permissions = Permission::get();
             $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id", $id)
@@ -76,18 +75,23 @@ class RolController extends Controller
                 ->all();
             return view('roles.edit', compact('role', 'permissions', 'rolePermissions'));
 
-        } catch (ModelNotFoundException $e) {
-
+        
             return redirect()->route('roles.index')->with('mensaje', 'Rol no encontrado')->with('color', 'danger');
-        }
+        
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|unique:roles,name,' . $id,
             'permissions' => 'required',
-        ]);
+        ],
+            [
+                'name.required' => 'El nombre del rol es obligatorio',
+                'name.unique' => 'El nombre del rol ya existe',
+                'permissions.required' => 'Debe seleccionar al menos un permiso',
+            ]);
+
         $role = Role::find($id);
         $role->name = $request->name;
         $role->save();
