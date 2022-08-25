@@ -67,7 +67,8 @@ class RolController extends Controller
 
     public function edit($id)
     {
-      
+        try {
+
             $role = Role::findOrFail($id);
             $permissions = Permission::get();
             $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id", $id)
@@ -75,9 +76,10 @@ class RolController extends Controller
                 ->all();
             return view('roles.edit', compact('role', 'permissions', 'rolePermissions'));
 
-        
+        } catch (ModelNotFoundException $e) {
+
             return redirect()->route('roles.index')->with('mensaje', 'Rol no encontrado')->with('color', 'danger');
-        
+        }
     }
 
     public function update(Request $request, $id)
