@@ -15,6 +15,8 @@
                     </div>
                     <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
                     <p class="text-muted text-center">{{ Auth::user()->adminlte_desc() }}</p>
+                    <p class="text-muted text-center">Miembro desde
+                        {{ Auth::user()->created_at->formatLocalized('%B %Y') }}</p>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -23,7 +25,8 @@
             <div class="card card-primary card-outline">
                 <div class="card-header p-2">
                     <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="nav-link active btn-sm" href="#perfil" data-toggle="tab">Perfil</a></li>
+                        <li class="nav-item"><a class="nav-link active btn-sm" href="#perfil"
+                                data-toggle="tab">Perfil</a></li>
                         <!--li class="nav-item"><a class="nav-link" href="#contraseña" data-toggle="tab">Contraseña</a></li-->
                     </ul>
                 </div>
