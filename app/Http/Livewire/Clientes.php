@@ -50,7 +50,7 @@ class Clientes extends Component
     public function render()
     {
         $clientes = Cliente::select('id', 'cedula', 'nombres', 'apellidos', 'correo', 'telefono', 'direccion', 'estado')
-        ->paginate(1);
+        ->paginate(5);
         return view('livewire.cliente.listar-cliente', compact('clientes'));
     }
 

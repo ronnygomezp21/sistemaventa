@@ -49,19 +49,18 @@ class Categorias extends Component
 
     public function store()
     {
+        $validatedData = $this->validate();
+
         try {
             $this->authorize('crear-categoria');
-            $this->validate();
             $categoria = new Categoria();
-            $categoria->descripcion = $this->descripcion;
+            $categoria->descripcion = $validatedData['descripcion'];
             $categoria->save();
             $this->limpiar_campos();
             $this->dispatchBrowserEvent('cerrar_modal');
             session()->flash('messagge', 'Categoria agregada con exito.');
             session()->flash('color', 'success');
         } catch (\Exception$e) {
-            //$this->dispatchBrowserEvent('mostrar_error', $e->getMessage());
-            //$this->emit('categoriaError', $e->getMessage());
             $this->limpiar_campos();
             $this->dispatchBrowserEvent('cerrar_modal');
             session()->flash('messagge', 'No tienes el permiso para crear una categoria.');
