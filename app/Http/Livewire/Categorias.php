@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 
 class Categorias extends Component
 {
-    /*public $foo;
+    public $foo;
     public $search = '';
     public $page = 1;
 
@@ -21,7 +21,7 @@ class Categorias extends Component
     protected $queryString = [
     'search' => ['except' => '', 'as' => 's'],
     'page' => ['except' => 1, 'as' => 'p'],
-    ];*/
+    ];
 
     public $modal_agregar = false;
 
@@ -86,8 +86,6 @@ class Categorias extends Component
             $this->dispatchBrowserEvent('cerrar_modal');
             session()->flash('success', 'Categoria eliminada con exito.');
         } catch (\Exception$e) {
-            //$this->dispatchBrowserEvent('mostrar_error', $e->getMessage());
-            //$this->emit('categoriaError', $e->getMessage());
             session()->flash('error', 'No tienes el permiso para eliminar una categoria.');
             $this->dispatchBrowserEvent('cerrar_modal');
             return redirect()->to('/categorias');
@@ -101,13 +99,13 @@ class Categorias extends Component
 
     public function render()
     {
-        /*return view('livewire.categoria.categoria', [
-        'categorias' => Categoria::where('descripcion', 'like', '%' . $this->search . '%')->paginate(2),
-        ]);*/
-        $categorias = Categoria::select('id', 'descripcion', 'estado')
+        return view('livewire.categoria.categoria', [
+        'categorias' => Categoria::where('descripcion', 'like', '%' . $this->search . '%')->paginate(5),
+        ]);
+        /*$categorias = Categoria::select('id', 'descripcion', 'estado')
             ->paginate(5);
         return view('livewire.categoria.categoria', [
             'categorias' => $categorias,
-        ]);
+        ]);*/
     }
 }

@@ -6,12 +6,12 @@
                 {{ session('messagge') }}
             </div>
         @endif
-        <div class="card card-secondary">
+        <div class="card card-primary card-outline">
             <div class="card-header">
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="search" wire:model="search" class="form-control float-right"
-                            placeholder="categoria">
+                            placeholder="Descripcion....">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>
@@ -104,8 +104,8 @@
                         </div>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-info">Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                     </form>
                 </div>
             </div>
